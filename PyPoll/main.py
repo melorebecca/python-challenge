@@ -41,7 +41,7 @@ def Poll(data):
                 print ("Total Votes: " + str(total_votes))
                 print ("-------------------------")
                 for i in range(len(unique_canidates)):
-                        print (f'{unique_canidates[i]: {total_percent[i]}% {Candidates[i]}')
+                        print (f"{unique_canidates[i]}: {vote_percent[i]}% {candidates[i]}")
                 print ("-------------------------")
                 print(f"Winner: {winner}")
                 print ("-------------------------"
@@ -50,21 +50,19 @@ def Poll(data):
 output_file = os.path.join('..','PyPoll','Analysis', "election_analysis.txt")
 
 with open(output_file, "w") as text:
-    text.write("Election Results" + "\n")
-    text.write("-------------------------" + "\n")
-    text.write("Total Votes: " + str(votes) + "\n")
-    text.write("-------------------------" + "\n")
-    text.write(f"Khan: {round((khan_votes/votes*100),6)}% ({khan_votes})"+ "\n")
-    text.write(f"Correy: {round((correy_votes/votes*100),6)}% ({correy_votes})"+ "\n")
-    text.write(f"Li: {round((li_votes/votes*100),6)}% ({li_votes})"+ "\n")
-    text.write(f"O'Tooley: {round((otooley_votes/votes*100),6)}% ({otooley_votes})"+ "\n")
+        text.write("Election Results" + "\n")
+        text.write("-------------------------" + "\n")
+        text.write("Total Votes: " + str(total_votes) + "\n")
+        text.write("-------------------------" + "\n")
+        for i in range (len(unique_candidate)):
+            txtfile.write(f"{unique_canidates[i]}: {vote_percent[i]}% {candidates[i]}") + "\n")
     text.write("-------------------------" + "\n")
     text.write(f"Winner: {winner}" + "\n")   
     text.write("-------------------------" + "\n")
-
 
 
 # read the csv
 with open(csvpath, 'r') as csvfile:
         csvreader = csv.reader(csvfile, delimiter=',')
         csvheader = next(csvreader)
+        Poll(csvreader)
