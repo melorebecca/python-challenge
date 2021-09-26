@@ -9,13 +9,12 @@ def Poll(data):
 
         #variables
         total_votes = 0
-        vote_count = []
-        vote_percent []
-        canidate_list = []
+        votes = []
+        canidates = []
         unique_canidate = []
         winner = []
 
-        #loop
+        #loop of data
         for row in data:
 
                 #sum of votes
@@ -25,8 +24,18 @@ def Poll(data):
                 if row[2] not in unique_canidate:
                         unique_canidate.append(row[2])
                 
-                #new list
+                #list
                 votes.append(row[2])
+
+                #loop to find canidate, total votes, & vote percent calc
+                for canidate in unique_canidate:
+                        candidates.append(votes.count(canidate))
+                        vote_percent.append(round(votes.count(canidate)/total_votes*100,3))
+
+                #winner calc
+                winner = unique_canidate[canidates.index(max(canidates))]
+
+
 
 
 
