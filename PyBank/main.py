@@ -55,3 +55,14 @@ print ("Total Profit: " + "$" + str(totalProfitLosses))
 print (f"Average Change: ${avg_change}")
 print (f"Greatest Increase in Profits: {greatest_increase_month} (${greatest_increase})")
 print (f"Greatest Decrease in Profits: {greatest_decrease_month} (${greatest_decrease})")
+
+#write
+output_file = os.path.join('..','PyBank','Analysis', "financial_analysis.txt")
+with open(output_file, "w") as text:
+    text.write("Financial Analysis" + "\n")
+    text.write("----------------------------" + "\n")
+    text.write("Total Months: " + str(month_count) + "\n")
+    text.write("Total Profit: " + "$" + str(totalProfitLosses) + "\n")
+    text.write(f"Average Change: ${avg_change}" + "\n")
+    text.write(f"Greatest Increase in Profits: {greatest_increase_month} (${greatest_increase})" + "\n")
+    text.write(f"Greatest Decrease in Profits: {greatest_decrease_month} (${greatest_decrease})" + "\n")
