@@ -1,68 +1,67 @@
+# Import Module
 import os
 import csv
 
-#file path
-csvpath = os.path.join('..','PyPoll','Resources', 'election_data.csv')
+# file path
+csvpath = os.path.join("Resources","election_data.csv")
+
+#lists
+candidate_list = []
+candidate_name = []
+vote_count = []
+vote_percent = []
 
 #define
 def Poll(data):
 
-        #variables
-        total_votes = 0
-        votes = []
-        canidates = []
-        unique_canidate = []
-        winner = []
+    total_count = 0
+    # loop
+    for row in data:
 
-        #loop of data
-        for row in data:
+        total_count = total_count + 1
+        # append names
+        if row[2] not in candidate_name:
+            candidate_name.append(row[2])
+        #total vote count
+        vote_count.append(row[2])
 
-                #sum of votes
-                total_votes += 1
+    # loop canidates
+    for candidate in candidate_name:
+        # vote counts
+        candidate_list.append(vote_count.count(candidate))
+        # vote percentage
+        vote_percent.append(vote_count.count(candidate)/total_count*100)
 
-                #append canidate names
-                if row[2] not in unique_canidate:
-                        unique_canidate.append(row[2])
-                
-                #list
-                votes.append(row[2])
+    #winner calc
+    winner = candidate_name[candidate_list.index(max(candidate_list))]
+    
+    # print
+    print('Election Results')
+    print('--------------------------------')
+    print(f'Total Votes: {total_count}')
+    print('--------------------------------')
+    for i in range(len(candidate_name)):
+        print(f'{candidate_name[i]}: {round(vote_percent[i],4)}% ({candidate_list[i]})')
+    print('--------------------------------')
+    print(f'Winner: {winner}')
+    print('--------------------------------')
 
-                #loop to find canidate, total votes, & vote percent calc
-                for canidate in unique_canidate:
-                        candidates.append(votes.count(canidate))
-                        vote_percent.append(round(votes.count(canidate)/total_votes*100,3))
+    # write
+    output_file = os.path.join("Analysis","election_results.txt")
 
-                #winner calc
-                winner = unique_canidate[canidates.index(max(canidates))]
-
-                #print 
-                print ("Election Results")
-                print ("-------------------------")
-                print ("Total Votes: " + str(total_votes))
-                print ("-------------------------")
-                for i in range(len(unique_canidates)):
-                        print (f"{unique_canidates[i]}: {vote_percent[i]}% {candidates[i]}")
-                print ("-------------------------")
-                print(f"Winner: {winner}")
-                print ("-------------------------"
-
-# write
-output_file = os.path.join('..','PyPoll','Analysis', "election_analysis.txt")
-
-with open(output_file, "w") as text:
+    with open(output_file, "w") as text:
         text.write("Election Results" + "\n")
         text.write("-------------------------" + "\n")
-        text.write("Total Votes: " + str(total_votes) + "\n")
+        text.write("Total Votes: " + str(total_count) + "\n")
         text.write("-------------------------" + "\n")
-        for i in range (len(unique_candidate)):
-            txtfile.write(f"{unique_canidates[i]}: {vote_percent[i]}% {candidates[i]}") + "\n")
-    text.write("-------------------------" + "\n")
-    text.write(f"Winner: {winner}" + "\n")   
-    text.write("-------------------------" + "\n")
+        for i in range(len(candidate_name)):
+                text.write(f'{candidate_name[i]}: {round(vote_percent[i],3)}% ({candidate_list[i]})' + "\n")
+        text.write("-------------------------" + "\n")
+        text.write(f'Winner: {winner}'+ "\n")
+        text.write("-------------------------" + "\n")
 
-
-# read the csv
-with open(csvpath, 'r') as csvfile:
-        csvreader = csv.reader(csvfile, delimiter=',')
-        csvheader = next(csvreader)
-        Poll(csvreader)
+# read csv
+with open(csvpath, newline='') as csvfile:
+    csv_reader = csv.reader(csvfile, delimiter=',')
+    csv_header = next(csvfile)
+    Poll(csv_reader)
