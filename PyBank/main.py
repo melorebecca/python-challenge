@@ -36,3 +36,13 @@ with open(csvpath, 'r') as csvfile:
                 revenue_change = curMonthrev - prevMonthrev
                 revenue_changes.append(revenue_change)
             prevMonthrev = curMonthrev
+
+#month by month changes in rev
+all_changes = sum(revenue_changes)
+avg_change = round(all_changes / (month_count - 1), 2)
+greatest_increase = max(revenue_changes)
+greatest_decrease = min(revenue_changes)
+greatest_increase_month_index = revenue_changes.index(greatest_increase)
+greatest_decrease_month_index = revenue_changes.index(greatest_decrease)
+greatest_increase_month = month[greatest_increase_month_index + 1]
+greatest_decrease_month = month[greatest_decrease_month_index + 1]
