@@ -1,6 +1,3 @@
-# python-challenge
-Section 3-Python Homework 
-
 # Python Homework - Py Me Up, Charlie
 
 ## Background
