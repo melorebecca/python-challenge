@@ -21,3 +21,18 @@ with open(csvpath, 'r') as csvfile:
 
         # loop
         for row in csvreader:
+
+            #list of the months
+            month_count = month_count + 1
+            month.append(row[0])
+                       
+            #total profit/losses
+            totalProfitLosses += int(row[1])
+            
+            # month to month changes in rev
+            curMonthrev = int(row[1])
+            total_revenue = total_revenue + curMonthrev
+            if month_count > 1:
+                revenue_change = curMonthrev - prevMonthrev
+                revenue_changes.append(revenue_change)
+            prevMonthrev = curMonthrev
