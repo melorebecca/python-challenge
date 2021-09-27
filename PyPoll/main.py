@@ -1,4 +1,3 @@
-# Import Module
 import os
 import csv
 
@@ -29,7 +28,7 @@ def Poll(data):
     for candidate in candidate_name:
         # vote counts
         candidate_list.append(vote_count.count(candidate))
-        # vote percentage
+        # vote percentage calc
         vote_percent.append(vote_count.count(candidate)/total_count*100)
 
     #winner calc
