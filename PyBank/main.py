@@ -46,3 +46,12 @@ greatest_increase_month_index = revenue_changes.index(greatest_increase)
 greatest_decrease_month_index = revenue_changes.index(greatest_decrease)
 greatest_increase_month = month[greatest_increase_month_index + 1]
 greatest_decrease_month = month[greatest_decrease_month_index + 1]
+
+#print
+print ("Financial Analysis")
+print ("----------------------------")
+print ("Total Months: " + str(month_count))
+print ("Total Profit: " + "$" + str(totalProfitLosses))
+print (f"Average Change: ${avg_change}")
+print (f"Greatest Increase in Profits: {greatest_increase_month} (${greatest_increase})")
+print (f"Greatest Decrease in Profits: {greatest_decrease_month} (${greatest_decrease})")
